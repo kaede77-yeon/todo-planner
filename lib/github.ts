@@ -6,10 +6,22 @@ export interface GitHubProfile {
   avatar_url: string;
 }
 
+/**
+ * Reads an env var, removing surrounding whitespace/newlines and one pair of
+ * wrapping quotes. Values pasted into a hosting dashboard (or piped through
+ * `echo`) often carry these, and GitHub then rejects the client_id with a 404.
+ */
+export function cleanEnv(name: string): string | undefined {
+  const raw = process.env[name];
+  if (raw === undefined) return undefined;
+  const value = raw.trim().replace(/^(['"])([\s\S]*)\1$/, "$2").trim();
+  return value || undefined;
+}
+
 /** Reads OAuth credentials from the environment only; nothing is hardcoded. */
 export function githubCredentials(): { clientId: string; clientSecret: string } {
-  const clientId = process.env.GITHUB_CLIENT_ID;
-  const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+  const clientId = cleanEnv("GITHUB_CLIENT_ID");
+  const clientSecret = cleanEnv("GITHUB_CLIENT_SECRET");
   if (!clientId || !clientSecret) {
     throw new ApiError(
       500,

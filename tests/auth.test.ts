@@ -102,6 +102,31 @@ describe("GET /auth/github", () => {
     expect(res.headers.get("location")).not.toContain("test-client-secret");
   });
 
+  it("strips whitespace, newlines and wrapping quotes from the credentials", async () => {
+    process.env.GITHUB_CLIENT_ID = '  "test-client-id"\r\n';
+    process.env.GITHUB_CLIENT_SECRET = "'test-client-secret'\n";
+    const res = await githubRoute.GET(req("GET", "/auth/github"));
+    expect(new URL(res.headers.get("location")!).searchParams.get("client_id")).toBe("test-client-id");
+
+    const state = res.cookies.get(STATE_COOKIE)!.value;
+    const fetchMock = stubGitHub({ id: 1, login: "a", avatar_url: "" });
+    await callbackRoute.GET(
+      req("GET", `/auth/github/callback?code=abc&state=${state}`, {
+        cookie: `${STATE_COOKIE}=${state}`,
+      })
+    );
+    const [, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit];
+    const sent = JSON.parse(init.body as string);
+    expect(sent.client_id).toBe("test-client-id");
+    expect(sent.client_secret).toBe("test-client-secret");
+  });
+
+  it("treats a whitespace- or quotes-only value as missing", async () => {
+    process.env.GITHUB_CLIENT_ID = '  ""  ';
+    const res = await githubRoute.GET(req("GET", "/auth/github"));
+    expect(res.status).toBe(500);
+  });
+
   it("returns a 500 with setup guidance when credentials are missing", async () => {
     delete process.env.GITHUB_CLIENT_SECRET;
     const res = await githubRoute.GET(req("GET", "/auth/github"));
