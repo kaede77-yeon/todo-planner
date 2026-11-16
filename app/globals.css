@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family:
+    "Pretendard", -apple-system, BlinkMacSystemFont, "Malgun Gothic",
+    "Apple SD Gothic Neo", sans-serif;
+}
