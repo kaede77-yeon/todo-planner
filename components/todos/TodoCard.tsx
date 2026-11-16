@@ -24,16 +24,16 @@ export function CardBody({ todo }: { todo: Todo }) {
     <>
       <p className="font-medium">{todo.title}</p>
       {todo.description ? (
-        <p className="mt-1 line-clamp-2 text-sm text-gray-600">
+        <p className="mt-1 line-clamp-2 text-sm text-body">
           {todo.description}
         </p>
       ) : null}
-      <p className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+      <p className="mt-2 flex items-center gap-2 text-xs text-muted">
         <PriorityBadge priority={todo.priority} />
         {todo.dueDate ? (
           <span
             className={
-              isOverdue(todo, new Date()) ? "font-medium text-red-600" : ""
+              isOverdue(todo, new Date()) ? "font-medium text-error" : ""
             }
           >
             마감: {todo.dueDate.slice(0, 10)}
@@ -52,7 +52,7 @@ export default function TodoCard({ todo, onOpen, onStatusChange }: Props) {
     <li
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`rounded border bg-white p-3 shadow-sm ${
+      className={`rounded-card border bg-canvas p-3 transition-shadow hover:shadow-float ${
         isDragging ? "opacity-40" : ""
       }`}
     >
@@ -65,7 +65,7 @@ export default function TodoCard({ todo, onOpen, onStatusChange }: Props) {
         <CardBody todo={todo} />
       </div>
       <div className="mt-2 flex items-center justify-between gap-2">
-        <label className="text-xs text-gray-500">
+        <label className="text-xs text-muted">
           <span className="sr-only">{todo.title} 상태 변경</span>
           <select
             value={todo.status}
@@ -73,7 +73,7 @@ export default function TodoCard({ todo, onOpen, onStatusChange }: Props) {
               const next = STATUSES.find((s) => s === e.target.value);
               if (next) onStatusChange(todo, next);
             }}
-            className="rounded border px-1 py-0.5 text-xs"
+            className="rounded-sm border px-1 py-0.5 text-xs"
           >
             {STATUSES.map((s) => (
               <option key={s} value={s}>
@@ -85,7 +85,7 @@ export default function TodoCard({ todo, onOpen, onStatusChange }: Props) {
         <button
           type="button"
           onClick={() => onOpen(todo)}
-          className="text-xs text-blue-600 hover:underline"
+          className="text-xs text-ink underline underline-offset-2"
         >
           편집
         </button>

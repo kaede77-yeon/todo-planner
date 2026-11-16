@@ -95,7 +95,7 @@ export default function KanbanBoard() {
   return (
     <div>
       {todosError ? (
-        <p role="alert" className="mb-3 rounded bg-red-50 p-2 text-sm text-red-700">
+        <p role="alert" className="mb-3 rounded-sm bg-surface-soft p-2 text-sm text-error">
           {todosError}
         </p>
       ) : null}
@@ -120,7 +120,7 @@ export default function KanbanBoard() {
         </div>
         <DragOverlay>
           {activeTodo ? (
-            <div className="rounded border bg-white p-3 shadow-lg">
+            <div className="rounded-card border bg-canvas p-3 shadow-float">
               <CardBody todo={activeTodo} />
             </div>
           ) : null}

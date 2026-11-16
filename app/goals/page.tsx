@@ -61,11 +61,11 @@ export default function GoalsPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">목표</h1>
+        <h1 className="text-display-xl">목표</h1>
         <button
           type="button"
           onClick={openNew}
-          className="rounded-md bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-700"
+          className="rounded-sm bg-primary px-3 py-2 text-sm text-white hover:bg-primary-active"
         >
           새 목표
         </button>
@@ -74,7 +74,7 @@ export default function GoalsPage() {
       {error && (
         <div
           role="alert"
-          className="mt-4 flex items-center justify-between rounded-md bg-red-50 p-3 text-sm text-red-700"
+          className="mt-4 flex items-center justify-between rounded-sm bg-surface-soft p-3 text-sm text-error"
         >
           <span>{error}</span>
           <button
@@ -88,9 +88,9 @@ export default function GoalsPage() {
       )}
 
       {loading && goals.length === 0 ? (
-        <p className="mt-6 text-sm text-gray-500">불러오는 중...</p>
+        <p className="mt-6 text-sm text-muted">불러오는 중...</p>
       ) : goals.length === 0 && !error ? (
-        <p className="mt-6 text-sm text-gray-500">
+        <p className="mt-6 text-sm text-muted">
           아직 목표가 없습니다. &quot;새 목표&quot;로 1년 목표를 추가해보세요.
         </p>
       ) : (

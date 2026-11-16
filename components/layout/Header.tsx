@@ -34,35 +34,35 @@ export default function Header({ menuOpen, onToggleMenu }: HeaderProps) {
   }
 
   return (
-    <header className="flex h-14 items-center gap-3 border-b border-gray-200 bg-white px-4">
+    <header className="flex h-16 items-center gap-3 border-b border-hairline bg-canvas px-4 md:h-20 md:px-8">
       <button
         type="button"
         onClick={onToggleMenu}
         aria-label="메뉴 열기/닫기"
         aria-expanded={menuOpen}
         aria-controls="sidebar"
-        className="rounded-md p-2 text-gray-700 hover:bg-gray-100 md:hidden"
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-strong text-ink md:hidden"
       >
         <span aria-hidden>☰</span>
       </button>
-      <span className="text-lg font-semibold text-gray-900">
+      <span className="text-display-sm font-bold text-primary">
         할 일 + 계획 관리
       </span>
       {me && (
-        <div className="ml-auto flex items-center gap-3 text-sm">
+        <div className="ml-auto flex items-center gap-2 rounded-full border border-hairline py-1 pl-1 pr-1 text-sm shadow-float sm:pl-3">
+          <span className="hidden font-semibold text-ink sm:inline">{me.username}</span>
           {me.avatarUrl && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={me.avatarUrl}
               alt=""
-              className="h-7 w-7 rounded-full"
+              className="h-8 w-8 rounded-full"
             />
           )}
-          <span className="text-gray-700">{me.username}</span>
           <button
             type="button"
             onClick={logout}
-            className="rounded-md border border-gray-300 px-2 py-1 text-gray-700 hover:bg-gray-100"
+            className="rounded-full px-3 py-1.5 font-medium text-ink hover:bg-surface-soft"
           >
             로그아웃
           </button>

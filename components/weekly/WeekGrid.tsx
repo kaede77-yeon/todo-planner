@@ -52,7 +52,7 @@ export default function WeekGrid({
     <div className="space-y-4">
       <div className="grid grid-cols-7 gap-2" data-testid="week-grid">
         {WEEK_DAY_ORDER.map((day) => (
-          <div key={day} className="min-h-32 rounded border p-2">
+          <div key={day} className="min-h-32 rounded-card border p-2">
             <button
               type="button"
               aria-label={`${DAY_LABELS[day]}요일 할일 추가`}
@@ -60,7 +60,7 @@ export default function WeekGrid({
                 setActiveDay(activeDay === day ? null : day);
                 setTitle("");
               }}
-              className="mb-2 w-full rounded bg-gray-100 py-1 text-sm font-medium hover:bg-gray-200"
+              className="mb-2 w-full rounded-sm bg-surface-soft py-1 text-sm font-medium hover:bg-surface-strong"
             >
               {DAY_LABELS[day]}
             </button>
@@ -72,13 +72,13 @@ export default function WeekGrid({
                 <input
                   autoFocus
                   aria-label="할일 제목"
-                  className="rounded border px-1 py-0.5 text-sm"
+                  className="rounded-sm border px-1 py-0.5 text-sm"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <button
                   type="submit"
-                  className="rounded bg-blue-600 px-2 py-0.5 text-xs text-white"
+                  className="rounded-sm bg-primary px-2 py-0.5 text-xs text-white"
                 >
                   추가
                 </button>
@@ -86,11 +86,11 @@ export default function WeekGrid({
             )}
             <ul className="space-y-1">
               {groups[day].map((t) => (
-                <li key={t._id} className="rounded bg-blue-50 p-1 text-sm">
+                <li key={t._id} className="rounded-sm bg-surface-soft p-1 text-sm">
                   <div>{t.title}</div>
                   <button
                     type="button"
-                    className="text-xs text-gray-500 underline"
+                    className="text-xs text-muted underline"
                     onClick={() => void onUnassign(t._id)}
                   >
                     배치 해제
@@ -104,7 +104,7 @@ export default function WeekGrid({
       <div>
         <h3 className="mb-1 text-sm font-medium">미배치 할일</h3>
         {unscheduled.length === 0 ? (
-          <p className="text-sm text-gray-500">미배치 할일이 없습니다.</p>
+          <p className="text-sm text-muted">미배치 할일이 없습니다.</p>
         ) : (
           <ul className="space-y-1">
             {unscheduled.map((t) => (
@@ -112,7 +112,7 @@ export default function WeekGrid({
                 <span>{t.title}</span>
                 <select
                   aria-label={`${t.title} 요일 배치`}
-                  className="rounded border px-1"
+                  className="rounded-sm border px-1"
                   value=""
                   onChange={(e) => {
                     if (e.target.value !== "")

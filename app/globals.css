@@ -2,8 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family:
-    "Pretendard", -apple-system, BlinkMacSystemFont, "Malgun Gothic",
-    "Apple SD Gothic Neo", sans-serif;
+@layer base {
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+  }
+
+  /* Form fields: hairline outline, 8px radius; focus thickens to an ink border, no glow. */
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    @apply rounded-sm border border-hairline bg-canvas text-ink placeholder:text-muted;
+  }
+  input:not([type="checkbox"]):not([type="radio"]):focus,
+  select:focus,
+  textarea:focus {
+    @apply border-ink outline-none ring-1 ring-ink;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    @apply accent-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ink;
+  }
 }

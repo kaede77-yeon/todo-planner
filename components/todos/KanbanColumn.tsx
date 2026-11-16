@@ -33,19 +33,19 @@ export default function KanbanColumn({
   return (
     <section
       aria-label={STATUS_LABEL[status]}
-      className={`flex min-h-[12rem] flex-col rounded-lg bg-gray-100 p-3 ${
-        isOver ? "ring-2 ring-blue-300" : ""
+      className={`flex min-h-[12rem] flex-col rounded-card bg-surface-soft p-3 ${
+        isOver ? "ring-2 ring-ink" : ""
       }`}
     >
       <header className="mb-3 flex items-center justify-between">
-        <h2 className="font-semibold">
+        <h2 className="text-title-md">
           {STATUS_LABEL[status]}{" "}
-          <span className="text-sm text-gray-500">({todos.length})</span>
+          <span className="text-sm text-muted">({todos.length})</span>
         </h2>
         <button
           type="button"
           onClick={() => onAdd(status)}
-          className="rounded px-2 py-1 text-sm text-blue-600 hover:bg-white"
+          className="rounded-sm px-2 py-1 text-sm text-ink underline underline-offset-2 hover:bg-canvas"
         >
           + 추가
         </button>

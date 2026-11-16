@@ -76,12 +76,12 @@ export default function TodoForm({
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="rounded border px-2 py-1"
+          className="rounded-sm border px-2 py-1"
           autoFocus
         />
       </label>
       {error ? (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-error">
           {error}
         </p>
       ) : null}
@@ -90,7 +90,7 @@ export default function TodoForm({
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="rounded border px-2 py-1"
+          className="rounded-sm border px-2 py-1"
           rows={3}
         />
       </label>
@@ -102,7 +102,7 @@ export default function TodoForm({
             const next = STATUSES.find((s) => s === e.target.value);
             if (next) setStatus(next);
           }}
-          className="rounded border px-2 py-1"
+          className="rounded-sm border px-2 py-1"
         >
           {STATUSES.map((s) => (
             <option key={s} value={s}>
@@ -119,7 +119,7 @@ export default function TodoForm({
             const next = PRIORITIES.find((p) => p.value === e.target.value);
             if (next) setPriority(next.value);
           }}
-          className="rounded border px-2 py-1"
+          className="rounded-sm border px-2 py-1"
         >
           {PRIORITIES.map((p) => (
             <option key={p.value} value={p.value}>
@@ -134,11 +134,11 @@ export default function TodoForm({
           type="date"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          className="rounded border px-2 py-1"
+          className="rounded-sm border px-2 py-1"
         />
       </label>
       {dueDate && dueDate < localDateString(new Date()) ? (
-        <p role="status" className="text-sm text-amber-700">
+        <p role="status" className="text-sm text-error">
           오늘 이전 날짜입니다.
         </p>
       ) : null}
@@ -147,7 +147,7 @@ export default function TodoForm({
         <select
           value={weeklyPlanId}
           onChange={(e) => setPlan(e.target.value)}
-          className="rounded border px-2 py-1"
+          className="rounded-sm border px-2 py-1"
         >
           <option value="">연결 안 함</option>
           {plans.map((p) => (
@@ -162,7 +162,7 @@ export default function TodoForm({
         <select
           value={goalId}
           onChange={(e) => setGoal(e.target.value)}
-          className="rounded border px-2 py-1"
+          className="rounded-sm border px-2 py-1"
         >
           <option value="">연결 안 함</option>
           {goals.map((g) => (
@@ -177,7 +177,7 @@ export default function TodoForm({
           <button
             type="button"
             onClick={onDelete}
-            className="rounded px-3 py-1 text-sm text-red-600 hover:bg-red-50"
+            className="rounded-sm px-3 py-1 text-sm text-error hover:bg-surface-soft"
           >
             삭제
           </button>
@@ -188,13 +188,13 @@ export default function TodoForm({
           <button
             type="button"
             onClick={onCancel}
-            className="rounded px-3 py-1 text-sm hover:bg-gray-100"
+            className="rounded-sm px-3 py-1 text-sm hover:bg-surface-soft"
           >
             취소
           </button>
           <button
             type="submit"
-            className="rounded bg-blue-600 px-3 py-1 text-sm text-white"
+            className="rounded-sm bg-primary px-3 py-1 text-sm text-white"
           >
             저장
           </button>

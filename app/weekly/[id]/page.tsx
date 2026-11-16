@@ -40,7 +40,7 @@ export default function WeeklyDetailPage() {
   if (!plan) {
     return (
       <div>
-        <Link href="/weekly" className="text-blue-600 underline">
+        <Link href="/weekly" className="text-ink underline underline-offset-2">
           ← 목록
         </Link>
         <p className="mt-2">
@@ -71,23 +71,23 @@ export default function WeeklyDetailPage() {
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/weekly" className="text-sm text-blue-600 underline">
+        <Link href="/weekly" className="text-sm text-ink underline underline-offset-2">
           ← 목록
         </Link>
-        <h1 className="text-2xl font-bold">{formatWeekRange(plan.weekStart)}</h1>
+        <h1 className="text-display-xl">{formatWeekRange(plan.weekStart)}</h1>
       </div>
       {error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-error">
           {error}
         </p>
       )}
 
       <section>
         <div className="mb-1 flex items-center justify-between">
-          <h2 className="font-semibold">주간 목표</h2>
+          <h2 className="text-title-md">주간 목표</h2>
           <button
             type="button"
-            className="rounded border px-2 py-0.5 text-sm"
+            className="rounded-sm border px-2 py-0.5 text-sm"
             onClick={() => setEditing(true)}
           >
             목표 편집
@@ -97,7 +97,7 @@ export default function WeeklyDetailPage() {
           <ProgressBar value={weeklyProgress(plan.goals)} label="주간 진행률" />
         </div>
         {plan.goals.length === 0 ? (
-          <p className="text-sm text-gray-500">목표가 없습니다.</p>
+          <p className="text-sm text-muted">목표가 없습니다.</p>
         ) : (
           plan.goals.map((g, i) => (
             <WeeklyGoalItem
@@ -113,7 +113,7 @@ export default function WeeklyDetailPage() {
         <label className="block text-sm">
           <span className="mb-1 block font-medium">메모</span>
           <textarea
-            className="w-full rounded border px-2 py-1"
+            className="w-full rounded-sm border px-2 py-1"
             rows={3}
             value={memoValue}
             onChange={(e) => setMemo(e.target.value)}
@@ -124,7 +124,7 @@ export default function WeeklyDetailPage() {
           <label className="block">
             <span className="mb-1 block font-medium">회고</span>
             <textarea
-              className="w-full rounded border px-2 py-1"
+              className="w-full rounded-sm border px-2 py-1"
               rows={4}
               value={retroValue}
               onChange={(e) => {
@@ -137,13 +137,13 @@ export default function WeeklyDetailPage() {
           <div className="mt-1 flex items-center gap-2">
             <button
               type="button"
-              className="rounded border px-2 py-0.5"
+              className="rounded-sm border px-2 py-0.5"
               onClick={() => void saveRetro()}
             >
               회고 저장
             </button>
             {retroSaved && (
-              <span role="status" className="text-green-700">
+              <span role="status" className="text-ink">
                 저장됨
               </span>
             )}
@@ -152,7 +152,7 @@ export default function WeeklyDetailPage() {
         <label className="block text-sm">
           <span className="mb-1 block font-medium">1년 목표</span>
           <select
-            className="w-full rounded border px-2 py-1"
+            className="w-full rounded-sm border px-2 py-1"
             value={plan.goalId ?? ""}
             onChange={(e) =>
               void updatePlan(plan._id, { goalId: e.target.value || null })
@@ -169,7 +169,7 @@ export default function WeeklyDetailPage() {
       </section>
 
       <section>
-        <h2 className="mb-2 font-semibold">주간 그리드</h2>
+        <h2 className="mb-2 text-title-md">주간 그리드</h2>
         <WeekGrid
           planId={plan._id}
           todos={todos}

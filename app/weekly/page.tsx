@@ -36,10 +36,10 @@ export default function WeeklyPage() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">주간 계획</h1>
+        <h1 className="text-display-xl">주간 계획</h1>
         <button
           type="button"
-          className="rounded bg-blue-600 px-3 py-1 text-white"
+          className="rounded-sm bg-primary px-3 py-1 text-white"
           onClick={() => {
             setNotice("");
             setOpen(true);
@@ -49,28 +49,28 @@ export default function WeeklyPage() {
         </button>
       </div>
       {notice && (
-        <p role="status" className="text-sm text-amber-700">
+        <p role="status" className="text-sm text-error">
           {notice}
         </p>
       )}
       {error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-error">
           {error}
         </p>
       )}
       {loading && plans.length === 0 && <p>불러오는 중...</p>}
       {!loading && recent.length === 0 && (
-        <p className="text-gray-500">아직 주간 계획이 없습니다.</p>
+        <p className="text-muted">아직 주간 계획이 없습니다.</p>
       )}
       <ul className="space-y-2">
         {recent.map((p) => (
           <li key={p._id}>
             <Link
               href={`/weekly/${p._id}`}
-              className="block rounded border p-3 hover:bg-gray-50"
+              className="block rounded-card border p-3 transition-shadow hover:shadow-float"
             >
               <div className="font-medium">{formatWeekRange(p.weekStart)}</div>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted">
                 목표 {p.goals.filter((g) => g.done).length}/{p.goals.length} 완료
               </div>
               <div className="mt-2">
@@ -85,7 +85,7 @@ export default function WeeklyPage() {
           <p>
             이번 주 계획이 이미 있습니다.{" "}
             <Link
-              className="text-blue-600 underline"
+              className="text-ink underline underline-offset-2"
               href={`/weekly/${existing._id}`}
             >
               열기

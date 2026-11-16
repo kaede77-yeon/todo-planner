@@ -14,7 +14,7 @@ export default function Sidebar({ open, onNavigate }: SidebarProps) {
   return (
     <aside
       id="sidebar"
-      className={`${open ? "block" : "hidden"} border-b border-gray-200 bg-white md:block md:w-56 md:shrink-0 md:border-b-0 md:border-r`}
+      className={`${open ? "block" : "hidden"} border-b border-hairline bg-canvas md:block md:w-56 md:shrink-0 md:border-b-0 md:border-r`}
     >
       <nav aria-label="주 메뉴" className="flex flex-col gap-1 p-3">
         {NAV_ITEMS.map(({ href, label }) => {
@@ -26,10 +26,10 @@ export default function Sidebar({ open, onNavigate }: SidebarProps) {
               href={href}
               onClick={onNavigate}
               aria-current={active ? "page" : undefined}
-              className={`rounded-md px-3 py-2 text-sm font-medium ${
+              className={`rounded-sm px-3 py-2.5 text-body-md ${
                 active
-                  ? "bg-indigo-50 text-indigo-700"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-surface-soft font-semibold text-ink"
+                  : "font-medium text-muted hover:bg-surface-soft hover:text-ink"
               }`}
             >
               {label}

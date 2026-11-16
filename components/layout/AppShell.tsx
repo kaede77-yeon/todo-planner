@@ -12,12 +12,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   // The login page has no navigation and no user to show.
   if (pathname === "/login") {
     return (
-      <div className="min-h-screen bg-gray-50 p-4 text-gray-900">{children}</div>
+      <div className="min-h-screen bg-canvas p-4 text-ink">{children}</div>
     );
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
+    <div className="flex min-h-screen flex-col bg-canvas text-ink">
       <Header menuOpen={open} onToggleMenu={() => setOpen((o) => !o)} />
       <div className="flex flex-1 flex-col md:flex-row">
         <Sidebar open={open} onNavigate={() => setOpen(false)} />

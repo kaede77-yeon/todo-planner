@@ -35,14 +35,14 @@ export default function GoalForm({ goal, onSubmit, onCancel }: GoalFormProps) {
     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
       <div>
         <label htmlFor="goal-title" className="mb-1 block text-sm font-medium">
-          제목 <span className="text-red-600">*</span>
+          제목 <span className="text-error">*</span>
         </label>
         <input
           id="goal-title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           aria-invalid={error !== null}
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+          className="w-full rounded-sm border border-hairline px-3 py-2 text-sm"
         />
       </div>
       <div>
@@ -54,11 +54,11 @@ export default function GoalForm({ goal, onSubmit, onCancel }: GoalFormProps) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+          className="w-full rounded-sm border border-hairline px-3 py-2 text-sm"
         />
       </div>
       {error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-error">
           {error}
         </p>
       )}
@@ -66,14 +66,14 @@ export default function GoalForm({ goal, onSubmit, onCancel }: GoalFormProps) {
         <button
           type="button"
           onClick={onCancel}
-          className="rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          className="rounded-sm px-3 py-2 text-sm text-ink hover:bg-surface-soft"
         >
           취소
         </button>
         <button
           type="submit"
           disabled={saving}
-          className="rounded-md bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-50"
+          className="rounded-sm bg-primary px-3 py-2 text-sm text-white hover:bg-primary-active disabled:opacity-50"
         >
           {goal ? "저장" : "추가"}
         </button>

@@ -15,7 +15,7 @@ export default function WeeklyGoalItem({ goal, onToggle }: Props) {
         checked={goal.done}
         onChange={(e) => onToggle(e.target.checked)}
       />
-      <span className={goal.done ? "text-gray-400 line-through" : ""}>
+      <span className={goal.done ? "text-muted-soft line-through" : ""}>
         {goal.text}
       </span>
     </label>

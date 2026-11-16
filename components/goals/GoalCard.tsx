@@ -12,10 +12,10 @@ interface GoalCardProps {
 
 export default function GoalCard({ goal, todos, onEdit, onDelete }: GoalCardProps) {
   return (
-    <li className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-      <h2 className="font-semibold">{goal.title}</h2>
+    <li className="rounded-card border border-hairline bg-canvas p-4 shadow-sm">
+      <h2 className="text-title-md">{goal.title}</h2>
       {goal.description && (
-        <p className="mt-1 whitespace-pre-wrap text-sm text-gray-600">
+        <p className="mt-1 whitespace-pre-wrap text-sm text-body">
           {goal.description}
         </p>
       )}
@@ -26,14 +26,14 @@ export default function GoalCard({ goal, todos, onEdit, onDelete }: GoalCardProp
         <button
           type="button"
           onClick={() => onEdit(goal)}
-          className="rounded-md px-2 py-1 text-sm text-blue-600 hover:bg-blue-50"
+          className="rounded-sm px-2 py-1 text-sm text-ink underline underline-offset-2 hover:bg-surface-soft"
         >
           수정
         </button>
         <button
           type="button"
           onClick={() => onDelete(goal)}
-          className="rounded-md px-2 py-1 text-sm text-red-600 hover:bg-red-50"
+          className="rounded-sm px-2 py-1 text-sm text-error hover:bg-surface-soft"
         >
           삭제
         </button>

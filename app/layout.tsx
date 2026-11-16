@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
+
+// Inter is the open substitute for the design's variable sans; Hangul falls
+// back to Pretendard / system fonts via the Tailwind font stack.
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
   title: "할 일 + 계획 관리",
@@ -13,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className="antialiased">
+    <html lang="ko" className={inter.variable}>
+      <body>
         <AppShell>{children}</AppShell>
       </body>
     </html>
